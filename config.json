@@ -1,0 +1,39 @@
+{
+	"build": {
+		"root": "./",
+		"temp": "./.tmp",
+		"build": "./dist",
+		"src": {
+			"root": "src/app",
+			"html": "**/*.html",
+			"less": "**/*.less",
+			"js": [
+				"**/*.js",
+				"!**/*{test,spec}.js"
+			],
+			"index": "index.html"
+		},
+		"assets": {
+			"root": "assets",
+			"fonts": "fonts/**/*.*",
+			"images": "images/**/*.*"
+		},
+		"bower": {
+			"directory": "bower_components",
+			"ignorePath": "../.."
+		},
+		"templateCache": {
+			"file": "app.templates.js",
+			"options": {
+				"module": "app.core",
+				"standAlone": false,
+				"moduleSystem": "IIFE",
+				"root": "/"
+			}
+		},
+		"optimize": {
+			"vendors": "vendors.min.js",
+			"app": "app.min.js"
+		}
+	}
+}
