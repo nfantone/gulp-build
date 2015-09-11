@@ -1,12 +1,11 @@
 gulp-build
 ==========
 
-A [GulpJS](https://github.com/gulpjs) plugin that allows creating a production-ready build for your [AngularJS](http://angularjs.org)
-application.
+A [GulpJS](https://github.com/gulpjs) plugin that allows creating a production-ready build for your [AngularJS](http://angularjs.org) application.
 
 > While this plugin is intended to be used along Angular applications, it is not specific to it and can be used with
 > other types of projects, provided they are organized in a similar fashion.
- 
+
 This is somewhat based on build tasks included in [John Papa's gulpfile patterns](https://github.com/johnpapa/gulp-patterns/blob/gulp4/gulpfile.js).
 
 
@@ -17,7 +16,7 @@ This is somewhat based on build tasks included in [John Papa's gulpfile patterns
 
 
 ```bash
-git clone http://github.com/nfantone/gulp-builg.git
+git clone http://github.com/nfantone/gulp-build.git
 cd gulp-build
 npm install
 ```
@@ -27,18 +26,17 @@ npm install
 * Gulp 4.0+
 * npm 2.12+
 
-To install latest Node.js/npm on Ubuntu/Debian:
+To install ~0.12 Node.js/npm on Ubuntu/Debian/Mint:
 
 ```bash
-# Note the new setup script name for Node.js v0.12
+# Note setup script name for Node.js v0.12
 curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 
 # Then install with:
 sudo apt-get install -y nodejs
 ```
 
-> GulpJS 4.0 is yet to be publicly released. For now, use the `gulpjs/gulp#4.0` branch or follow [this](https://demisx.github.io/gulp4/2015/01/15/install-gulp4.html)
-guide.
+> GulpJS 4.0 is yet to be publicly released. For now, use the `gulpjs/gulp#4.0` branch or follow [this](https://demisx.github.io/gulp4/2015/01/15/install-gulp4.html) guide.
 
 
 ## Usage
@@ -52,7 +50,6 @@ var gulp = require('gulp');
 var GulpBuild = require('gulp-build');
 
 gulp.registry(new GulpBuild());
-
 ```
 
 And then, you can call in all the tasks described in the API below, such as:
@@ -80,12 +77,12 @@ You can check out a sample `config.json` file [here](http://github.com/nfantone/
 ## Scaffolding
 
 `gulp-build` doesn't impose many restrictions on how your application should be structured. However, some minimal
-rules regarding directories should be followed. If you are following (Google Angular App Structure Recommendations)[https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub]
+rules regarding directories should be followed. If you are following [Google Angular App Structure Recommendations](https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub)
 or [John Papa's Angular style guide](https://github.com/johnpapa/angular-styleguide), you are already set up.
 
 * There must be a single sources (`.js`, `.css`, `.less`, `.html`) root folder. E.g.: `src/app`
 * There must be an assets (fonts and images) root folder, separated from the sources. E.g.: `src/assets`
-* You must be using [bower](https://bower.io) to manage your project's dependencies. E.g.: `bower_components` 
+* You must be using [bower](https://bower.io) to manage your project's dependencies. E.g.: `bower_components`
 
 
 ## API
@@ -99,6 +96,10 @@ to be added to the existing registry via `gulp.registry`.
 
 ```javascript
 {
+  tasks: {
+    build: 'build',
+    inject: 'inject'
+  },
 	root: './',
 	src: {
 		root: 'src/app',
@@ -107,7 +108,7 @@ to be added to the existing registry via `gulp.registry`.
 			'!**/*{test,.spec}.js'
 		],
 		html: '**/*.html',
-		less: '**/*.less',
+		styles: '**/*.css',
 		index: 'index.html'
 	},
 	temp: './.tmp',
@@ -138,7 +139,7 @@ to be added to the existing registry via `gulp.registry`.
 ```
 
 All paths must be relative to the `root` property of the object that contains them (where applicable), which in turn, are
-relative to the `root` property of their parent. For instance, `assets.fonts` and `assets.images` globs are relative to 
+relative to the `root` property of their parent. For instance, `assets.fonts` and `assets.images` globs are relative to
 `assets.root`, while `assets.root` is relative to `root`.
 
 ### `inject`
@@ -151,12 +152,14 @@ gulp inject
 
 ### `build`
 
-Performs `inject`, after optimization/minification/uglyfication and revisioning of `.js`, compiled `.css` and assets 
+Performs `inject`, after optimization/minification/uglyfication and revisioning of `.js`, compiled `.css` and assets
 files. Moves everything to `build` directory.
 
 ```bash
 gulp build
 ```
+
+> Names of both tasks can be changed to whatever you want by configuring `tasks.build` and/or `tasks.inject` properties.
 
 ## License
 
