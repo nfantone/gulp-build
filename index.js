@@ -13,7 +13,8 @@ var Registry = (function() {
   util.inherits(BuildRegistry, DefaultRegistry);
 
   BuildRegistry.prototype.init = function init(taker) {
-    var builder = new GulpBuilder(new BuildConfig(this.options));
+    var config = new BuildConfig(this.options);
+    var builder = new GulpBuilder(config);
 
     var recipes = {};
     recipes.inject = taker.series(taker.parallel(builder.wiredep, builder.styles, builder.templateCache),
@@ -21,8 +22,8 @@ var Registry = (function() {
     recipes.build = taker.series(taker.parallel(builder.images, builder.fonts, recipes.inject),
       builder.optimize, builder.assets);
 
-    taker.task('inject', recipes.inject);
-    taker.task('build', recipes.build);
+    taker.task(config.tasks.inject, recipes.inject);
+    taker.task(config.tasks.build, recipes.build);
   };
 
   return BuildRegistry;
