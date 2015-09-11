@@ -26,7 +26,7 @@
 			"file": "app.templates.js",
 			"options": {
 				"module": "app.core",
-				"standAlone": false,
+				"standalone": false,
 				"moduleSystem": "IIFE",
 				"root": "/"
 			}
