@@ -1,6 +1,6 @@
 {
   "name": "gulp-build",
-  "version": "0.0.2-dev",
+  "version": "0.0.2",
   "description": "Gulp custom registry that provides common build tasks for Angular projects",
   "main": "index.js",
   "private": true,
