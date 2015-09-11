@@ -96,6 +96,10 @@ to be added to the existing registry via `gulp.registry`.
 
 ```javascript
 {
+  tasks: {
+    build: 'build',
+    inject: 'inject'
+  },
 	root: './',
 	src: {
 		root: 'src/app',
@@ -104,7 +108,7 @@ to be added to the existing registry via `gulp.registry`.
 			'!**/*{test,.spec}.js'
 		],
 		html: '**/*.html',
-		less: '**/*.less',
+		styles: '**/*.css',
 		index: 'index.html'
 	},
 	temp: './.tmp',
@@ -154,6 +158,8 @@ files. Moves everything to `build` directory.
 ```bash
 gulp build
 ```
+
+> Names of both tasks can be changed to whatever you want by configuring `tasks.build` and/or `tasks.inject` properties.
 
 ## License
 
