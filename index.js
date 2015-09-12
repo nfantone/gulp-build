@@ -12,8 +12,6 @@ var Registry = (function() {
     var config = new BuildConfig(this.options);
     var builder = new GulpBuilder(config);
 
-    sequence.use(taker);
-
     var recipes = {};
     recipes.inject = sequence([builder.wiredep, builder.styles, builder.templateCache],
       builder.injectCSS, builder.injectTemplateCache);
@@ -26,4 +24,9 @@ var Registry = (function() {
   return BuildRegistry;
 })();
 
-module.exports = Registry;
+module.exports = {
+  register: function(taker, options) {
+    var registry = new Registry(options);
+    registry.init(taker);
+  }
+};
