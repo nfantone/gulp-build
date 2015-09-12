@@ -13,11 +13,23 @@ var Registry = (function() {
     var builder = new GulpBuilder(config);
 
     var recipes = {};
-    recipes.inject = sequence([builder.wiredep, builder.styles, builder.templateCache],
-      builder.injectCSS, builder.injectTemplateCache);
-    recipes.build = sequence([builder.images, builder.fonts, recipes.inject], builder.optimize, builder.assets);
 
+    taker.task('wiredep', builder.wiredep);
+    taker.task('styles', builder.styles);
+    taker.task('templates', builder.templateCache);
+    taker.task('inject:css', builder.injectCSS);
+    taker.task('inject:templates', builder.injectTemplateCache);
+    taker.task('images', builder.images);
+    taker.task('fonts', builder.fonts);
+    taker.task('optimize', builder.optimize);
+    taker.task('assets', builder.assets);
+
+    recipes.inject = sequence(['wiredep', 'styles', 'templates'],
+      'inject:css', 'inject:templates');
     taker.task(config.tasks.inject, recipes.inject);
+
+    recipes.build = sequence(['images', 'fonts', config.tasks.inject], 'optimize', 'assets');
+
     taker.task(config.tasks.build, recipes.build);
   };
 
