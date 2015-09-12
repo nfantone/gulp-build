@@ -11,7 +11,7 @@ This is somewhat based on build tasks included in [John Papa's gulpfile patterns
 
 ## Installation
 
-`gulp-build` is a **Gulp 4.0+ plugin**. It defines a `CustomRegistry` that groups common build-related tasks, such as
+`gulp-build` is a **Gulp 3.9 plugin**. It defines a `CustomRegistry` that groups common build-related tasks, such as
  uglyfying, minification, rebasing of assets references and revisioning.
 
 
@@ -23,7 +23,7 @@ npm install
 
 ### Requirements
 
-* Gulp 4.0+
+* Gulp 3.9
 * npm 2.12+
 
 To install ~0.12 Node.js/npm on Ubuntu/Debian/Mint:
@@ -36,7 +36,7 @@ curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 sudo apt-get install -y nodejs
 ```
 
-> GulpJS 4.0 is yet to be publicly released. For now, use the `gulpjs/gulp#4.0` branch or follow [this](https://demisx.github.io/gulp4/2015/01/15/install-gulp4.html) guide.
+> The branch you are viewing this on, intends to support Gulp 3.9 by emulating features already available in Gulp 4.0+. For a Gulp 4.0+ ready version, please use any of the tagged releases.
 
 
 ## Usage
@@ -47,9 +47,7 @@ In your `gulpfile.js` declare:
 
 ```javascript
 var gulp = require('gulp');
-var GulpBuild = require('gulp-build');
-
-gulp.registry(new GulpBuild());
+require('gulp-build').register(gulp);
 ```
 
 And then, you can call in all the tasks described in the API below, such as:
@@ -60,16 +58,14 @@ gulp build
 
 ### Advanced
 
-You may pass in an `options` configuration object to `GulpBuild` to override some or all of the default
+You may pass in an `options` configuration object to `gulp-build` to override some or all of the default
 settings.
 
 ```javascript
 var gulp = require('gulp');
-var GulpBuild = require('gulp-build');
-
-gulp.registry(new GulpBuild({
+require('gulp-build').register(gulp, {
     build: './build'  
-}));
+});
 ```
 
 You can check out a sample `config.json` file [here](http://github.com/nfantone/gulp-build/master/config.json).
@@ -87,10 +83,9 @@ or [John Papa's Angular style guide](https://github.com/johnpapa/angular-stylegu
 
 ## API
 
-### `new GulpBuild([options])`
+### `register(gulpInst, [options])`
 
-Constructs a new Gulp [custom registry](https://github.com/phated/undertaker/blob/master/README.md#custom-registries), ready
-to be added to the existing registry via `gulp.registry`.
+Declares `inject` and `build` recipes as tasks to the `gulp` instance passed as argument.
 
 `options` is an optional object that can be defined to override the following sensible defaults:
 
