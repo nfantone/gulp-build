@@ -18,4 +18,4 @@ gulp.task('watch', function() {
   gulp.watch(paths.src, gulp.series('eslint'));
 });
 
-gulp.task('default', gulp.series('watch'));
+gulp.task('default', ['watch']);
