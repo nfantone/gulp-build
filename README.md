@@ -148,7 +148,7 @@ gulp inject
 ### `build`
 
 Performs `inject`, after optimization/minification/uglyfication and revisioning of `.js`, compiled `.css` and assets
-files. Moves everything to `build` directory.
+files. Moves everything to `build` directory, including arbitrary resources and files defined by `"resources"`.
 
 ```bash
 gulp build

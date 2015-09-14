@@ -23,12 +23,14 @@ var Registry = (function() {
     taker.task('fonts', builder.fonts);
     taker.task('optimize', builder.optimize);
     taker.task('assets', builder.assets);
+    taker.task('resources', builder.resources);
 
     recipes.inject = sequence(['wiredep', 'styles', 'templates'],
       'inject:css', 'inject:templates');
     taker.task(config.tasks.inject, recipes.inject);
 
-    recipes.build = sequence(['images', 'fonts', config.tasks.inject], 'optimize', 'assets');
+    recipes.build = sequence(['images', 'fonts', config.tasks.inject],
+      'optimize', 'assets', 'resources');
 
     taker.task(config.tasks.build, recipes.build);
   };

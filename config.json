@@ -18,6 +18,7 @@
 			"fonts": "fonts/**/*.*",
 			"images": "images/**/*.*"
 		},
+		"resources": "src/app/favicon.ico",
 		"bower": {
 			"directory": "bower_components",
 			"ignorePath": "../.."
