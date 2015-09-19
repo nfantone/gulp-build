@@ -24,6 +24,7 @@
       "ignorePath": "../.."
     },
     "templateCache": {
+      "enabled": true,
       "file": "app.templates.js",
       "options": {
         "module": "app.core",
