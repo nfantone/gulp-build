@@ -33,6 +33,7 @@
       }
     },
     "optimize": {
+      "filter": [],
       "vendors": "vendors.min.js",
       "app": "app.min.js"
     }
