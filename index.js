@@ -1,6 +1,7 @@
 var sequence = require('gulp-sequence');
 var GulpBuilder = require('./lib/build');
 var BuildConfig = require('./lib/config');
+var _ = require('lodash');
 
 var Registry = (function() {
 
@@ -25,8 +26,12 @@ var Registry = (function() {
     taker.task('assets', builder.assets);
     taker.task('resources', builder.resources);
 
-    recipes.inject = sequence(['wiredep', 'styles', 'templates'],
-      'inject:css', 'inject:templates');
+    if (config.templateCache.enabled) {
+      recipes.inject = sequence(['wiredep', 'styles', 'templates'],
+        'inject:css', 'inject:templates');
+    } else {
+      recipes.inject = sequence(['wiredep', 'styles'], 'inject:css');
+    }
     taker.task(config.tasks.inject, recipes.inject);
 
     recipes.build = sequence(['images', 'fonts', config.tasks.inject],
