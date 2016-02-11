@@ -3,10 +3,12 @@ A [GulpJS](https://github.com/gulpjs) plugin that allows creating a production-r
 
 > While this plugin is intended to be used along Angular applications, it is not specific to it and can be used with other types of projects, provided they are organized in a similar fashion.
 
+[![js-semistandard-style](https://cdn.rawgit.com/flet/semistandard/master/badge.svg)](https://github.com/Flet/semistandard)
+
 This is somewhat based on build tasks included in [John Papa's gulpfile patterns](https://github.com/johnpapa/gulp-patterns/blob/gulp4/gulpfile.js).
 
 ## Installation
-`gulp-build` is a **Gulp 3.9 plugin**. It defines a `CustomRegistry` that groups common build-related tasks, such as  uglyfying, minification, rebasing of assets references and revisioning.
+`gulp-build` is a **Gulp 3.9.x plugin**. It defines a `CustomRegistry` that groups common build-related tasks, such as uglyfying, minification, rebasing of assets references and revisioning.
 
 ```bash
 git clone http://github.com/nfantone/gulp-build.git
@@ -56,8 +58,7 @@ require('gulp-build').register(gulp, {
 ```
 
 You can check out a sample `config.json` file [here](http://github.com/nfantone/gulp-build/master/config.json).
-
-* Actions performed by the build can be switched on or off to accommodate to your needs. For example, if you don't care about revisioning of files you can override `optimize` settings like so:
+- Actions performed by the build can be switched on or off to accommodate to your needs. For example, if you don't care about revisioning of files you can override `optimize` settings like so:
 
 ```
 var gulp = require('gulp');
@@ -76,7 +77,7 @@ require('gulp-build').register(gulp, {
 
 > All `optimize` actions are enabled by default.
 
-* Use `resources` setting to move any custom files excluded from the build (i.e.: anything not specifically described by globs in `src` or `assets`) to the `dist` directory. Resources will be moved as is, without any modification or optimization. For example, if you want to include a `favicon.ico` in your output, you way do so this way:
+- Use `resources` setting to move any custom files excluded from the build (i.e.: anything not specifically described by globs in `src` or `assets`) to the `dist` directory. Resources will be moved as is, without any modification or optimization. For example, if you want to include a `favicon.ico` in your output, you way do so this way:
 
 ```
 var gulp = require('gulp');
@@ -86,7 +87,6 @@ require('gulp-build').register(gulp, {
 ```
 
 > `resources` accept the same arguments as `gulp.src`, but bear into mind that [only globs will preserve directory structure](https://github.com/gulpjs/gulp/issues/151#issuecomment-32341841) in the output.
-
 
 ## Scaffolding
 `gulp-build` doesn't impose many restrictions on how your application should be structured. However, some minimal rules regarding directories should be followed. If you are following [Google Angular App Structure Recommendations](https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub) or [John Papa's Angular style guide](https://github.com/johnpapa/angular-styleguide), you are already set up.
