@@ -1,10 +1,10 @@
+'use strict';
+
 var sequence = require('gulp-sequence');
 var GulpBuilder = require('./lib/build');
 var BuildConfig = require('./lib/config');
-var _ = require('lodash');
 
 var Registry = (function() {
-
   function BuildRegistry(options) {
     this.options = options;
   }
