@@ -33,12 +33,13 @@ var Registry = (function() {
     } else {
       recipes.inject = sequence(['wiredep', 'styles'], 'inject:css');
     }
-    taker.task(config.tasks.inject, recipes.inject);
 
     recipes.build = sequence(['images', 'fonts', config.tasks.inject],
       'optimize', 'assets', 'resources', 'cleanup');
 
     taker.task(config.tasks.build, recipes.build);
+    taker.task(config.tasks.inject, recipes.inject);
+    taker.task(config.tasks.package, [config.tasks.build], builder.package);
   };
 
   return BuildRegistry;

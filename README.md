@@ -164,7 +164,14 @@ Performs `inject`, after optimization/minification/uglyfication and revisioning 
 gulp build
 ```
 
-> Names of both tasks can be changed to whatever you want by configuring `tasks.build` and/or `tasks.inject` properties.
+### `package`
+Performs `build` and generates a `tar.gz` file named after the `"name"` and `"version"` on `package.json` with the contents of the `config.build` directory (`./dist`, by default). It deletes any previous file with the same name and path before compressing.
+
+```bash
+gulp package
+```
+
+> Names of tasks can be changed to whatever you want by configuring `tasks.build`, `task.package` and/or `tasks.inject` properties.
 
 ## License
 MIT
