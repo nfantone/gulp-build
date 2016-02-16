@@ -18,13 +18,13 @@ npm install
 
 ### Requirements
 - Gulp 3.9
-- npm 2.12+
+- npm 3.6.0+
 
-To install ~0.12 Node.js/npm on Ubuntu/Debian/Mint:
+To install ~4.0.0 Node.js/npm on Ubuntu/Debian/Mint:
 
 ```bash
-# Note setup script name for Node.js v0.12
-curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+# Note setup script name for Node.js v4.x
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 
 # Then install with:
 sudo apt-get install -y nodejs

@@ -25,6 +25,7 @@ var Registry = (function() {
     taker.task('optimize', builder.optimize);
     taker.task('assets', builder.assets);
     taker.task('resources', builder.resources);
+    taker.task('cleanup', builder.cleanup);
 
     if (config.templateCache.enabled) {
       recipes.inject = sequence(['wiredep', 'styles', 'templates'],
@@ -35,7 +36,7 @@ var Registry = (function() {
     taker.task(config.tasks.inject, recipes.inject);
 
     recipes.build = sequence(['images', 'fonts', config.tasks.inject],
-      'optimize', 'assets', 'resources');
+      'optimize', 'assets', 'resources', 'cleanup');
 
     taker.task(config.tasks.build, recipes.build);
   };
