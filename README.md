@@ -17,7 +17,7 @@ npm install
 ```
 
 ### Requirements
-- Gulp 3.9
+- Gulp 3.9.x
 - npm 3.6.0+
 
 To install ~4.0.0 Node.js/npm on Ubuntu/Debian/Mint:
@@ -60,7 +60,7 @@ require('gulp-build').register(gulp, {
 You can check out a sample `config.json` file [here](http://github.com/nfantone/gulp-build/master/config.json).
 - Actions performed by the build can be switched on or off to accommodate to your needs. For example, if you don't care about revisioning of files you can override `optimize` settings like so:
 
-```
+```javascript
 var gulp = require('gulp');
 require('gulp-build').register(gulp, {
     build: './build',
@@ -79,14 +79,27 @@ require('gulp-build').register(gulp, {
 
 - Use `resources` setting to move any custom files excluded from the build (i.e.: anything not specifically described by globs in `src` or `assets`) to the `dist` directory. Resources will be moved as is, without any modification or optimization. For example, if you want to include a `favicon.ico` in your output, you way do so this way:
 
-```
+```javascript
 var gulp = require('gulp');
 require('gulp-build').register(gulp, {
-    resources: 'src/app/favicon.ico'
+    resources: 'src/app/favicon.ico' // Can also be an Array or Object (see below)
 });
 ```
 
 > `resources` accept the same arguments as `gulp.src`, but bear into mind that [only globs will preserve directory structure](https://github.com/gulpjs/gulp/issues/151#issuecomment-32341841) in the output.
+
+You can also explicitly indicate a base directory by using the following alternative syntax, which can be used interchangeably:
+
+```javascript
+var gulp = require('gulp');
+require('gulp-build').register(gulp, {
+    resources: [{
+      root: '.',
+      patterns: 'icons/hi-def/thump-up.cls'
+    }, 'src/app/favicon.ico']
+});
+```
+
 
 ## Scaffolding
 `gulp-build` doesn't impose many restrictions on how your application should be structured. However, some minimal rules regarding directories should be followed. If you are following [Google Angular App Structure Recommendations](https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub) or [John Papa's Angular style guide](https://github.com/johnpapa/angular-styleguide), you are already set up.
