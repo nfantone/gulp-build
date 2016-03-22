@@ -1,8 +1,8 @@
 'use strict';
 
-var sequence = require('gulp-sequence');
-var GulpBuilder = require('./lib/build');
-var BuildConfig = require('./lib/config');
+const sequence = require('gulp-sequence');
+const GulpBuilder = require('./lib/build');
+const BuildConfig = require('./lib/config');
 
 var Registry = (function() {
   function BuildRegistry(options) {
