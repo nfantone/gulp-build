@@ -11,7 +11,7 @@ gulp.task('eslint', function() {
   return gulp.src(paths.src)
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failOnError());
+    .pipe(eslint.failAfterError());
 });
 
 gulp.task('watch', function() {

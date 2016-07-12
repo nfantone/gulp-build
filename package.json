@@ -28,7 +28,7 @@
     "gulp-csso": "^2.0.0",
     "gulp-filter": "^4.0.0",
     "gulp-gzip": "^1.4.0",
-    "gulp-header": "^1.8.6",
+    "gulp-header": "^1.8.7",
     "gulp-htmlmin": "^2.0.0",
     "gulp-if": "^2.0.1",
     "gulp-imagemin": "^3.0.1",
@@ -43,11 +43,11 @@
     "gulp-replace": "^0.5.4",
     "gulp-rev": "^7.1.0",
     "gulp-rev-replace": "^0.4.3",
-    "gulp-scss": "^1.3.17",
+    "gulp-scss": "^1.4.0",
     "gulp-sequence": "^0.4.5",
     "gulp-styl": "^1.2.0",
     "gulp-tar": "^1.9.0",
-    "gulp-uglify": "^1.5.3",
+    "gulp-uglify": "^1.5.4",
     "gulp-useref": "^3.1.0",
     "gulp-util": "^3.0.7",
     "lodash": "^4.13.1",
@@ -59,11 +59,11 @@
     "wiredep": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^2.13.1",
+    "eslint": "^3.0.1",
     "eslint-config-semistandard": "^6.0.2",
-    "eslint-config-standard": "^5.3.1",
+    "eslint-config-standard": "^5.3.5",
     "eslint-plugin-promise": "^1.3.2",
-    "eslint-plugin-standard": "^1.3.2",
-    "gulp-eslint": "^2.0.0"
+    "eslint-plugin-standard": "^1.3.3",
+    "gulp-eslint": "^3.0.1"
   }
 }
