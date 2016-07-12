@@ -3,6 +3,10 @@
   "version": "0.0.4-dev",
   "description": "Gulp custom registry that provides common build tasks for Angular projects",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "private": true,
   "repository": {
     "type": "git",
