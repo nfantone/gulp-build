@@ -30,7 +30,7 @@ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-> The branch you are viewing this on, intends to support Gulp 3.9 by emulating features already available in Gulp 4.0+. For a Gulp 4.0+ ready version, please use any of the tagged releases.
+> The branch you are viewing this on, intends to support Gulp ~3.9 by emulating features already available in Gulp 4.0+. For a Gulp 4.0+ ready version, please use any of the tagged releases.
 
 ## Usage
 ### Simple
@@ -61,7 +61,9 @@ You can check out a sample `config.json` file [here](http://github.com/nfantone/
 - Actions performed by the build can be switched on or off to accommodate to your needs. For example, if you don't care about revisioning of files you can override `optimize` settings like so:
 
 ```javascript
-var gulp = require('gulp');
+const gulp = require('gulp');
+const reworkUrl = require('rework-plugin-url');
+
 require('gulp-build').register(gulp, {
     build: './build',
     optimize: {
@@ -71,7 +73,14 @@ require('gulp-build').register(gulp, {
       ngAnnotate: true,
       uglify: true,
       useref: true // applies concatenation of files
-    }
+  },
+  // Arguments to be passed to gulp-rework on CSS files
+  rework: [reworkUrl((url) => {
+    // Make all fonts URLs on .css relative to root
+    return url
+      .replace(/^[./]*\/fonts/, '../fonts')
+      .replace(/^[./]*\/images/, '../images');
+  })];
 });
 ```
 
@@ -80,7 +89,7 @@ require('gulp-build').register(gulp, {
 - Use `resources` setting to move any custom files excluded from the build (i.e.: anything not specifically described by globs in `src` or `assets`) to the `dist` directory. Resources will be moved as is, without any modification or optimization. For example, if you want to include a `favicon.ico` in your output, you way do so this way:
 
 ```javascript
-var gulp = require('gulp');
+const gulp = require('gulp');
 require('gulp-build').register(gulp, {
     resources: 'src/app/favicon.ico' // Can also be an Array or Object (see below)
 });
@@ -91,7 +100,7 @@ require('gulp-build').register(gulp, {
 You can also explicitly indicate a base directory by using the following alternative syntax, which can be used interchangeably:
 
 ```javascript
-var gulp = require('gulp');
+const gulp = require('gulp');
 require('gulp-build').register(gulp, {
     resources: [{
       root: '.',
@@ -150,6 +159,7 @@ Declares `inject` and `build` recipes as tasks to the `gulp` instance passed as 
             root: '/'
         }
     },
+    rework: [],
     optimize: {
       vendors: 'vendors.min.js',
       app: 'app.min.js',
