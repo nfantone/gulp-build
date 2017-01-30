@@ -1,6 +1,8 @@
 gulp-build
 ==========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/nfantone/gulp-build.svg)](https://greenkeeper.io/)
+
 A [GulpJS](https://github.com/gulpjs) plugin that allows creating a production-ready build for your [AngularJS](http://angularjs.org) application.
 
 > While this plugin is intended to be used along Angular applications, it is not specific to it and can be used with
